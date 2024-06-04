@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="light" id="html" dir="rtl" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list</title>
+    <script src="./main.js" defer></script>
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body class="p-4 bg-neutral_3 dark:bg-background-dark dark:text-on-dark-text">
+    <!-- sidebar -->
+    <aside
+      id="mySidenav"
+      class="lg:m-5 lg:rounded-2xl lg:inline-flex lg:w-3/12  hidden flex-col justify-between absolute bg-neutral_1 dark:bg-dark-second-background dark:text-on-dark-text z-10 h-full w-0 right-0 top-0"
+    >
+      <div>
+        <!-- user in lg size -->
+        <div class="hidden lg:block mt-16 mr-6">
+            <div class="flex mt-6 items-center">
+              <div class="rounded-ful m-0">
+                <img
+                  src="./assets/UserProfile.png"
+                  alt="UserProfile"
+                  class="w-16 h-16"
+                />
+              </div>
+              <div class="mr-3">
+                <p class="font-bold">سلام، رویا</p>
+                <p class="text-neutral_8 font-light">امروز، سه شنبه، ۵ بهمن ۱۴۰۲</p>
+              </div>
+            </div>
+        </div>
+        <!-- sidebar header in mobile -->
+        <div class="lg:hidden flex justify-between items-center px-8 pt-8">
+          <p class="font-bold text-lg">کوئرالیست</p>
+          <button class="lg:hidden" id="closeBtn">
+            <img class="w-6 dark:invert" src="./assets/closeBtn.png" alt="closeBtn" />
+          </button>
+        </div>
+
+        <div class="mt-8 m-auto flex-col items-center">
+          <button
+            class="dark:bg-[#041933] bg-[#F5FAFF] text-primay w-11/12 mt-6 mx-4 py-3 flex font-bold text-lg pr-4 rounded-lg"
+          >
+            <img class="h-full my-auto dark:text-on-dark-text dark:hidden" src="./assets/home.png" alt="homeBtn" />
+            <img class="h-full my-auto dark:text-on-dark-text hidden dark:inline-block" src="./assets/darkhome.png" alt="homeBtn" />
+            <p class="pr-4 text-base font-bold dark:text-on-dark-text">خانه</p>
+          </button>
+          <button
+            class="w-11/12 mt-4 mx-4 py-3 flex font-normal text-lg pr-4 rounded-lg"
+          >
+            <img
+              class="h-full my-auto dark:text-on-dark-text dark:hidden"
+              src="./assets/task-square.png"
+              alt="tasksBtn"
+            />
+            <img
+              class="h-full my-auto dark:text-on-dark-text hidden dark:inline-block"
+              src="./assets/darktask-square.png"
+              alt="tasksBtn"
+            />
+            <p class="pr-4 my-auto text-sm text-[#525252] font-bold dark:text-on-dark-text">تسک ها</p>
+          </button>
+          <button
+            class="w-11/12 mt-4 mx-4 py-3 flex font-normal text-lg pr-4 rounded-lg"
+          >
+            <img
+              class="h-full my-auto dark:hidden"
+              src="./assets/calendar.png"
+              alt="calendarBtn"
+            />
+            <img
+              class="h-full my-auto hidden dark:inline-block"
+              src="./assets/darkcalendar.png"
+              alt="calendarBtn"
+            />
+            <p class="pr-4 my-auto text-sm text-[#525252] font-bold dark:text-on-dark-text">تقویم</p>
+          </button>
+          <button
+            class="w-11/12 mt-4 mx-4 py-3 flex font-normal text-lg pr-4 rounded-lg"
+          >
+            <img
+              class="h-full my-auto dark:hidden"
+              src="./assets/setting.png"
+              alt="settingBtn"
+            />
+            <img
+              class="h-full my-auto hidden dark:inline-block"
+              src="./assets/darksetting.png"
+              alt="settingBtn"
+            />
+            <p class="pr-4 my-auto text-sm text-[#525252] font-bold dark:text-on-dark-text">تنظیمات</p>
+          </button>
+          <button
+            class="w-11/12 mt-4 mx-4 py-3 flex font-normal text-lg pr-4 rounded-lg"
+          >
+            <img
+              class="h-full my-auto dark:hidden"
+              src="./assets/reports.png"
+              alt="reportsBtn"
+            />
+            <img
+              class="h-full my-auto hidden dark:inline-block"
+              src="./assets/darkreports.png"
+              alt="reportsBtn"
+            />
+            <p class="pr-4 my-auto text-sm text-[#525252] font-bold dark:text-on-dark-text">گزارشات</p>
+          </button>
+          <button
+            class="w-11/12 mt-4 mx-4 py-3 flex font-normal text-lg pr-4 rounded-lg"
+          >
+            <img
+              class="h-full my-auto dark:hidden"
+              src="./assets/24-support.png"
+              alt="supportBtn"
+            />
+            <img
+              class="h-full my-auto hidden dark:inline-block"
+              src="./assets/dark24-support.png"
+              alt="supportBtn"
+            />
+            <p class="pr-4 my-auto text-sm text-[#525252] font-bold dark:text-on-dark-text">
+              پشتیبانی
+            </p>
+          </button>
+          <button
+            class="w-11/12 mt-4 mx-4 py-3 flex font-normal text-lg pr-4 rounded-lg"
+          >
+            <img
+              class="h-full my-auto dark:hidden"
+              src="./assets/profile.png"
+              alt="profileBtn"
+            />
+            <img
+              class="h-full my-auto hidden dark:inline-block"
+              src="./assets/darkprofile.png"
+              alt="profileBtn"
+            />
+            <p class="pr-4 my-auto text-sm text-[#525252] font-bold dark:text-on-dark-text">پروفایل</p>
+          </button>
+        </div>
+      </div>
+      <div class="flex-col mx-auto mb-9 w-3/4">
+        <div class="flex bg-[#F7F7F7] dark:bg-[#041933] w-full rounded-lg">
+          <button
+          id="light"
+            class="bg-neutral_1 dark:bg-[#041933] w-1/2 flex font-semibold text-lg pr-4 m-1 rounded-lg py-2"
+          >
+            <img class="h-4 my-auto" src="./assets/sun.png" alt="light" />
+            <p class="pr-4 text-neutral_8 pl-5">روشن</p>
+          </button>
+          <button
+          id="dark"
+            class="dark:bg-[#002247] w-1/2 flex font-semibold text-lg pr-4 m-1 rounded-lg py-2"
+          >
+            <img class="h-4 my-auto dark:hidden" src="./assets/moon.png" alt="dark" />
+            <img class="h-4 my-auto hidden dark:inline-block" src="./assets/darkmoon.png" alt="dark" />
+            <p class="pr-4 text-[#808080] dark:text-neutral_1 pl-5">تاریک</p>
+          </button>
+        </div>        
+          <img
+            class=" w-full h-[2px] mt-6 dark:hidden inline-block"
+            src="./assets/sidebarLine.png"
+            alt="line"
+          />
+          <img
+            class=" w-full h-[2px] mt-6 hidden dark:inline-block"
+            src="./assets/darksidebarLine.png"
+            alt="line"
+          />
+        <button
+          class="w-1/2 flex font-semibold text-lg pr-4 m-1 rounded-lg py-2 mt-6"
+        >
+          <img class="w-6 my-auto dark:hidden" src="./assets/logout.png" alt="log out" />
+          <img class="w-6 my-auto hidden dark:inline-block" src="./assets/darklogout.png" alt="log out" />
+          <p class="pr-4 text-neutral_8 dark:text-neutral_1">خروج</p>
+        </button>
+      </div>
+    </aside>
+    <!-- header -->   
+    <header class="lg:hidden bg-neutral_1 rounded-lg dark:bg-dark-second-background dark:text-on-dark-text">
+      <nav class="flex p-3">
+        <button class="dark:invert" id="menuBtn">
+          <img src="./assets/menuBtn.png" alt="menuBtn" />
+        </button>
+        <div class="m-auto">کوئرالیست</div>
+      </nav>
+    </header>
+    <main class="flex-col lg:absolute lg:left-0 lg:w-9/12">
+      <div class="lg:mx-[18%]">
+      <!-- username and date -->
+      <div class="lg:hidden">
+        <div class="flex mt-6 items-center">
+          <div class="rounded-ful m-0">
+            <img
+              src="./assets/UserProfile.png"
+              alt="UserProfile"
+              class="w-16 h-16"
+            />
+          </div>
+          <div class="mr-3">
+            <p class="font-bold">سلام، رویا</p>
+            <p class="text-neutral_8 font-light">امروز، سه شنبه، ۵ بهمن ۱۴۰۲</p>
+          </div>
+        </div>
+      </div>
+      <!-- line -->
+      <div class="lg:hidden m-auto w-full mt-7">
+        <img class="w-full h-px invert" src="./assets/Line.png" alt="line" />
+      </div>
+      <!-- task manager -->
+      <div  class=" flex-col mt-8 mb-4">
+        <div id="taskManager" class="w-full mb-4">
+          <p class="text-xl font-bold">تسک های امروز</p>
+          <p id="todayTasksNumber" class="text-neutral_8 font-light text-sm">
+            تسکی برای امروز نداری!
+          </p>
+        </div>
+        <button
+          id="taskAdder"
+          class="dark:bg-dark-second-background dark:text-on-dark-text dark:border-[#203E62] w-full border border-[#CCCCCC] border-dashed rounded-xl p-4 mt-4"
+        >
+          <div class="flex">
+            <img class="dark:hidden block" src="./assets/add.png" alt="taskAddImage" />
+            <img class="dark:block hidden" src="./assets/darkAdd.png" alt="taskAddImage" />
+            <p class="text-primay pr-2 dark:text-[#57A8FF]">افزودن وظیفه جدید</p>
+          </div>
+        </button>
+      </div>
+      <!-- task maker -->
+      <div class="hidden flex-col w-full mt-7 mb-6 pr-7 bg-neutral_1 dark:bg-background-dark dark:text-on-dark-text rounded-2xl border border-neutral_4" id="newTask">
+        <div id="tags" class="mt-4 flex flex-col content-between min-h-32">
+          <div>
+            <input id="taskName" class="dark:bg-background-dark dark:text-on-dark-text w-full text-base font-semibold placeholder-[#7D7D7F] focus:outline-none" type="text" name="taskName" id="taskname" placeholder="نام تسک">
+            <textarea class="dark:bg-background-dark dark:text-on-dark-text w-full mt-2 resize-none text-sm font-normal placeholder-[#AFAEB2] focus:outline-none" name="description" id="description" placeholder="توضیحات"></textarea>
+          </div>
+          <div id="tagDivision">
+            <!-- before opening -->
+            <button
+            id="tags" class="border border-neutral_4 mb-6 py-1 px-2 flex rounded-md"
+          >
+            <img id="closedTag" class="my-auto w-4" src="./assets/tagopener.png" alt="tagopener" />
+            <img id="openedTag"  class="hidden my-auto w-4" src="./assets/openedTag.png" alt="openedtag" />
+            <p class="pr-1 text-base font-semibold text-neutral_6">تگ ها</p>
+          </button>
+            <!-- after opening -->
+            <div id="tagValue" class="hidden justify-around w-7/12 px-2.5 border border-neutral_4 mb-6 py-1  rounded-md">
+              <button id="valueBtn" class="lg:w-1/4 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#C3FFF1] text-[#11A483] dark:bg-dark-green-background">پایین</button>
+              <img class="" src="./assets/tagLine.png" alt="line">
+              <button id="valueBtn" class="lg:w-1/4 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFEFD6] text-[#FFAF37] dark:bg-dark-yellow-background">متوسط</button>
+              <img class="" src="./assets/tagLine.png" alt="line">
+              <button id="valueBtn" class="lg:w-1/4 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFE2DB] text-[#FF5F37] dark:bg-dark-red-background">بالا</button>
+            </div>
+          </div>
+        </div>
+        <div class="w-full -mr-7">
+          <img class="w-full" src="./assets/lineTask.png" alt="line">
+        </div>
+        <div class="self-end flex justify-start w-1/2 gap-1.5 mt-4 ml-4 mb-5">
+          <buttton id="taskAdderCloser" class="bg-[#F5F5F5] dark:bg-[#0C1B31] p-3 m-auto rounded-md">
+            <img class="dark:hidden" src="./assets/taskAdderCloser.png" alt="taskAdderCloser">
+            <img class="hidden dark:inline-block" src="./assets/darktaskAdderCloser.png" alt="taskAdderCloser">
+          </buttton>
+          <buttton id="taskRender" class="dark:bg-[#0C1B31] bg-[#5ea7f5] py-3 px-4 w-3/4  rounded-md text-neutral_1 text-center my-auto">
+            <p class="dark:text-neutral_8">
+  
+              اضافه کردن تسک
+  
+            </p>
+          </buttton>
+        </div>
+        
+      </div>
+      <!-- new Task -->
+      <div id="todayTask">
+        <!-- new Task will be added after this -->
+      </div>
+      <!-- what have you done -->
+      <div id="nothingToDo" class="flex-col mt-9">
+        <img class="m-auto lg:w-5/12 w-2/3" src="./assets/taskImg.png" alt="" />
+        <div class="m-auto">
+          <p
+            class="text-center w-2/3 m-auto font-bold text-neutral_7 mt-6 text-xl"
+          >
+            چه کارهایی امروز برای انجام داری؟
+          </p>
+          <p class="text-center lg:w-3/4 w-2/3 m-auto text-neutral_6 mt-2 text-xl">
+            میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!
+          </p>
+        </div>
+      </div>
+      <!-- finished tasks -->
+      <div class="mt-12">
+        <div id="finishedTasks" class="mb-4">
+          <p class="text-xl font-bold">تسک های انجام شده</p>
+          <div class="mt-1">
+            <p id="finishedTasksNumber" class="text-neutral_8 font-light text-sm">تسکی برای امروز نداری!</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+  </body>
+</html>
