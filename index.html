@@ -11,7 +11,7 @@
     <!-- sidebar -->
     <aside
       id="mySidenav"
-      class="lg:m-5 lg:rounded-2xl lg:inline-flex lg:w-3/12  hidden flex-col justify-between absolute bg-neutral_1 dark:bg-dark-second-background dark:text-on-dark-text z-10 h-full w-0 right-0 top-0"
+      class="lg:m-5 lg:rounded-2xl lg:inline-flex hidden lg:w-3/12 flex-col justify-between absolute bg-neutral_1 dark:bg-dark-second-background dark:text-on-dark-text z-10 h-full w-0 right-0 top-0"
     >
       <div>
         <!-- user in lg size -->
@@ -158,16 +158,7 @@
             <p class="pr-4 text-[#808080] dark:text-neutral_1 pl-5">تاریک</p>
           </button>
         </div>        
-          <img
-            class=" w-full h-[2px] mt-6 dark:hidden inline-block"
-            src="./assets/sidebarLine.png"
-            alt="line"
-          />
-          <img
-            class=" w-full h-[2px] mt-6 hidden dark:inline-block"
-            src="./assets/darksidebarLine.png"
-            alt="line"
-          />
+          <hr class="w-full text-neutral_8 dark:text-neutral_1 mt-6">
         <button
           class="w-1/2 flex font-semibold text-lg pr-4 m-1 rounded-lg py-2 mt-6"
         >
@@ -205,9 +196,7 @@
         </div>
       </div>
       <!-- line -->
-      <div class="lg:hidden m-auto w-full mt-7">
-        <img class="w-full h-px invert" src="./assets/Line.png" alt="line" />
-      </div>
+      <hr class="text-neutral_8  dark:text-neutral_1 lg:hidden m-auto w-full mt-7">
       <!-- task manager -->
       <div  class=" flex-col mt-8 mb-4">
         <div id="taskManager" class="w-full mb-4">
@@ -228,7 +217,7 @@
         </button>
       </div>
       <!-- task maker -->
-      <div class="hidden flex-col w-full mt-7 mb-6 pr-7 bg-neutral_1 dark:bg-background-dark dark:text-on-dark-text rounded-2xl border border-neutral_4" id="newTask">
+      <div  class="hidden flex-col w-full mt-7 mb-6 pr-7 bg-neutral_1 dark:bg-background-dark dark:text-on-dark-text rounded-2xl border border-neutral_4" id="newTask">
         <div id="tags" class="mt-4 flex flex-col content-between min-h-32">
           <div>
             <input id="taskName" class="dark:bg-background-dark dark:text-on-dark-text w-full text-base font-semibold placeholder-[#7D7D7F] focus:outline-none" type="text" name="taskName" id="taskname" placeholder="نام تسک">
@@ -244,7 +233,7 @@
             <p class="pr-1 text-base font-semibold text-neutral_6">تگ ها</p>
           </button>
             <!-- after opening -->
-            <div id="tagValue" class="hidden justify-around w-7/12 px-2.5 border border-neutral_4 mb-6 py-1  rounded-md">
+            <div id="tagValue" class="hidden justify-around w-7/12 px-2.5 border border-neutral_4 mb-6 py-1 rounded-md">
               <button id="valueBtn" class="lg:w-1/4 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#C3FFF1] text-[#11A483] dark:bg-dark-green-background">پایین</button>
               <img class="" src="./assets/tagLine.png" alt="line">
               <button id="valueBtn" class="lg:w-1/4 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFEFD6] text-[#FFAF37] dark:bg-dark-yellow-background">متوسط</button>
@@ -253,9 +242,9 @@
             </div>
           </div>
         </div>
-        <div class="w-full -mr-7">
-          <img class="w-full" src="./assets/lineTask.png" alt="line">
-        </div>
+        
+        <hr class="w-full m-auto text-neutral_7 dark:text-neutral_1">
+        
         <div class="self-end flex justify-start w-1/2 gap-1.5 mt-4 ml-4 mb-5">
           <buttton id="taskAdderCloser" class="bg-[#F5F5F5] dark:bg-[#0C1B31] p-3 m-auto rounded-md">
             <img class="dark:hidden" src="./assets/taskAdderCloser.png" alt="taskAdderCloser">
@@ -294,11 +283,11 @@
         <div id="finishedTasks" class="mb-4">
           <p class="text-xl font-bold">تسک های انجام شده</p>
           <div class="mt-1">
-            <p id="finishedTasksNumber" class="text-neutral_8 font-light text-sm">تسکی برای امروز نداری!</p>
+            <p id="finishedTasksNumber" class="text-neutral_8 font-light text-sm">تسک انجام شده ای نداری!</p>
           </div>
         </div>
       </div>
     </main>
-    
+
   </body>
 </html>

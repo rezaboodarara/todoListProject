@@ -11,6 +11,17 @@ function sidebarCloser(){
     document.getElementById("mySidenav").style.width = "0%" 
     document.getElementById("mySidenav").style.display = "none"
 }
+let x = window.matchMedia("(min-width: 1024px)")
+x.addEventListener('change',()=>{
+    
+    if (x.matches) { // If media query matches
+        document.getElementById("mySidenav").style.display = "flex"
+        document.getElementById("mySidenav").style.width = "25%"
+    } else {
+        document.getElementById("mySidenav").style.display = "none"
+        document.getElementById("mySidenav").style.width = "75%"
+      }
+})
 
 function addTask(){
     document.body.querySelector("#nothingToDo").style.display = 'none';
@@ -105,7 +116,9 @@ renderBtn.addEventListener('click',()=>{
         alert('میزان اهمیت تسک را وارد کنید.');
     }else{
         let message = document.body.querySelector('#taskName');
-        if(message.value ===''){
+        let messageDetails = document.body.querySelector('#description');
+
+        if(message.value ==='' || messageDetails.value === ''){
             alert('پس توضیحات؟');
         }else{
         let taskValueBackground ='' ;
@@ -115,9 +128,15 @@ renderBtn.addEventListener('click',()=>{
             taskPriority = `<button value ='low' id="valueBtn valueCloser" class="flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#C3FFF1] text-[#11A483] dark:bg-dark-green-background">
             <p>پایین</p>
             </button>`
+            taskBtn = `<button value ='low' id="valueBtn valueCloser" class="hidden lg:flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#C3FFF1] text-[#11A483] dark:bg-dark-green-background">
+            <p>پایین</p>
+            </button>`
         }else if(priority === 'medium'){
             taskValueBackground = 'bg-yellow';
             taskPriority = `<button value ='medium' id="valueBtn valueCloser" class="flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFEFD6] text-[#FFAF37] dark:bg-dark-yellow-background">
+            <p>متوسط</p>
+            </button>`
+            taskBtn = `<button value ='medium' id="valueBtn valueCloser" class="hidden lg:flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFEFD6] text-[#FFAF37] dark:bg-dark-yellow-background">
             <p>متوسط</p>
             </button>`
         }else if(priority === 'high'){
@@ -125,29 +144,99 @@ renderBtn.addEventListener('click',()=>{
             taskPriority = `<button value ='high' id="valueBtn valueCloser" class="flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFE2DB] text-[#FF5F37] dark:bg-dark-red-background">
             <p>بالا</p>
             </button>`
+            taskBtn = `<button value ='high' id="valueBtn valueCloser" class="hidden lg:flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFE2DB] text-[#FF5F37] dark:bg-dark-red-background">
+            <p>بالا</p>
+            </button>`
         }
 
         let newTask = document.createElement();
-        newTask.innerHTML = `
-        <div id='task' class="dark:bg-dark-second-background dark:border-dark-second-background flex justify-between mb-4 border border-neutral_7 rounded-xl items-center">
-        <div class="flex items-center">
-        <div class="${taskValueBackground} w-1 min-h-10  my-3 rounded-l-lg"></div>
-            <div class="pr-2 lg:pr-4">
-            <input class="lg:pr-4" type="checkbox" id="checkBox" >
-               ${message.value}
-            </input>
-            </div>
+        // newTask.innerHTML = `
+        // <div id='task' class="dark:bg-dark-second-background dark:border-dark-second-background flex flex-col mb-4 border border-neutral_7 rounded-xl w-full">
+        // <div class="flex justify-between w-full">
+        // <div class="flex justify-between items-center">
+        // <div class="${taskValueBackground} w-1 min-h-10  my-3 rounded-l-lg"></div>
+        //     <div class="flex pr-2 lg:pr-4">
+        //     <input class="lg:pr-4" type="checkbox" id="checkBox" >
+        //         <div class="flex">
+        //           <div>
+        //             <div class="flex mx-4">
+        //               <p class="my-auto">
+        //                 ${message.value}
+        //               </p>
+        //               <!-- taskBtn -->
+        //               <button id='chosenTag' value ='low' id="valueBtn valueCloser" class="flex mx-3 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#C3FFF1] text-[#11A483] dark:bg-dark-green-background">
+        //                 <p>پایین</p>
+        //               </button>
+        //               <!-- end of taskBtn -->
+        //               </div>
+        //               </div>
+        //               </input>
+        //     </div>
+        // </div>
+        // <button>
+        // <img class="ml-6" src="./assets/taskBtn.png" alt="taskbutton">
+        // </button>
+        // </div>
+        // <div class="self-start mr-10 -mt-auto mb-6 text-[#727272]
+        //     ">${messageDetails.value}</div>
+        //   </div>`;
+        newTask.innerHTML = `<!-- task -->
+        <div id='task' class="dark:bg-dark-second-background dark:border-dark-second-background flex flex-col mb-4 border border-neutral_7 rounded-xl w-full">
+            <div class="flex justify-between w-full">
+              <div class="flex justify-between items-center">
+              
+                <div class="${taskValueBackground} w-1 min-h-10  my-3 rounded-l-lg"></div>
+                  <div class="flex pr-2 lg:pr-4">
+                  <input class="lg:pr-4" type="checkbox" id="checkBox" >
+                    <div class="flex">
+                      <div>
+                        <div class="flex mx-4">
+                          <p class="my-auto">
+                            ${message.value}
+                          </p>
+                          <!-- taskBtn -->
+                          ${taskBtn}
+                          <!-- end of taskBtn -->
+                        </div>
+            
+            
+                      </div>
+            
+                    </div>
+                  </input>
+                </div>
+              </div>
+              <div class="flex flex-col my-auto">
+          <div>
+            <button id="taskButtonActionsOpener">
+            <img class="ml-6" src="./assets/taskBtn.png" alt="taskbutton">
+            </button>
+          </div>
+          <div id="taskButtonActions" class="hidden relative left-6 min-w-20 p-1 rounded-lg border border-neutral_7 justify-between">
+            <button id="taskDelete">
+              <img class="dark:hidden" src="./assets/taskDelete.png" alt="task deleter button">
+              <img class="hidden dark:inline-block" src="./assets/taskDeleteDark.png" alt="task deleter button">
+            </button>
+            <img src="./assets/taskEditDeleteLine.png" alt="">
+            <button id="taskEdit">
+              <img class="dark:hidden" src="./assets/taskEdit.png" alt="task editor button">
+              <img class="hidden dark:inline-block" src="./assets/taskEditDark.png" alt="task editor button">
+            </button>
+          </div>
         </div>
-        <button>
-        <img class="ml-4" src="./assets/taskBtn.png" alt="taskbutton">
-        </button>
-        </div>`;
+            </div>
+                <div class="self-start hidden lg:block mr-10 -mt-5 mb-6 text-[#727272]
+                ">${messageDetails.value}</div>
+              </div>
+          <!-- end of task -->`
         document.body.querySelector('#todayTask').after(newTask);
         priority = '';
+        
         addChangeEventlistener();
         addTaskCloser();
         tagRemake();
         document.body.querySelector('#taskName').value = ''
+        document.body.querySelector('#description').value=''
         
         const valueBtn = document.body.querySelectorAll("#valueBtn");
         valueBtn.forEach((item)=>{
@@ -156,7 +245,15 @@ renderBtn.addEventListener('click',()=>{
         todoTaskNumber ++
 
         todayTaskhandler();
-        
+        document.body.querySelector('#taskButtonActionsOpener').addEventListener('click',()=>{
+            document.body.querySelector('#taskButtonActions').style.display = 'flex';    
+        });
+        document.body.querySelector('#taskEdit').addEventListener('click',()=>{
+            alert('edit')
+        })
+        document.body.querySelector('#taskDelete').addEventListener('click',()=>{
+            alert('delete')
+        })
     }
     }
     
@@ -178,7 +275,12 @@ function tagRemake(){
       <img class="" src="./assets/tagLine.png" alt="line">
       <button id="valueBtn" class="lg:w-1/4 my-2 py-0.5 px-2 font-semibold text-center rounded-[4px] bg-[#FFE2DB] text-[#FF5F37] dark:bg-dark-red-background">بالا</button>
     </div>`;
-    renderBtn.classList.add("dark:bg-[#0C1B31] bg-[#5ea7f5]");
+    const valueBtn = document.body.querySelectorAll("#valueBtn");
+    valueBtn.forEach((item)=>{
+        item.addEventListener('click',takeValue);
+    });
+
+    // renderBtn.classList.add("dark:bg-[#0C1B31] bg-[#5ea7f5]");
 }
 
 function todayTaskhandler(){
@@ -201,11 +303,9 @@ function todayTaskhandler(){
         document.body.querySelector('#nothingToDo').style.display = 'flex';
     }
     if(finishedTaskNumber>0){
-        console.log('doneN')
         document.getElementById("finishedTasksNumber").innerText = `${finishedTaskNumber} تسک را باید انجام شده.`
     }else{
-        console.log('didnt')
-        document.getElementById("finishedTasksNumber").innerText = 'تسکی برای امروز نداری!'
+        document.getElementById("finishedTasksNumber").innerText = 'تسک انجام شده ای نداری!'
     }
 }
 let task = []
@@ -216,7 +316,7 @@ let finishedTaskNumber = 0
 function addChangeEventlistener(){
     let todaytasks = document.body.querySelector('#checkBox')
     todaytasks.addEventListener('change',()=>{
-        let donetask = todaytasks.parentElement.parentElement.parentElement
+        let donetask = todaytasks.parentElement.parentElement.parentElement.parentElement
         donetask.classList.toggle('checked')
         //چجوری پاک میشه از اون یکی دیو؟!؟!؟!؟!؟!؟!؟!؟!؟!؟!؟!؟
         if(todaytasks.checked){
@@ -248,3 +348,10 @@ function lightTheme(){
 }
 document.body.querySelector('#light').addEventListener('click',lightTheme)
 document.body.querySelector('#dark').addEventListener('click',darkTheme)
+
+
+
+
+
+
+
